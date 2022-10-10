@@ -1,17 +1,17 @@
 var button = document.getElementById("enter");
 var input = document.getElementById("userinput");
 var ul = document.querySelector("ul");
-var li = document.querySelectorAll("li");
+// var li = document.querySelectorAll("li");
 
-for(let item of li){
-	item.classList.add("done");
-	item.classList.toggle("done");
-	item.addEventListener("click", function(){item.classList.toggle("done")});
-	addDeleteButton(item);
+//deal with pre-existing item add ToggleDone and delete button to them
+for(let item of ul.children){
+	toggleDone(item);
 }
 
 //why does not work in for loop but work outside?
 //HTML Collections and childNodes?
+//ul.children => HTMLCollection
+//li => NodeList
 
 // // ul.children[0].classList.add("done");
 // console.log(li[0]);
@@ -24,19 +24,23 @@ function addDeleteButton(element){
 	element.appendChild(delButton);
 }
 
+function toggleDone(element){
+	element.classList.add("done");
+	element.classList.toggle("done");
+	element.addEventListener("click",function(){element.classList.toggle("done")});
+	addDeleteButton(element);
+}
+
 function inputLength() {
 	return input.value.length;
 }
 
-
+//Creating new elements
 function createListElement() {
 	var li = document.createElement("li");
 	li.appendChild(document.createTextNode(input.value));
-	li.classList.add("done");
-	li.classList.toggle("done");
-	li.addEventListener("click",function(){li.classList.toggle("done")});
-	addDeleteButton(li);
 	ul.appendChild(li);
+	toggleDone(li);
 	input.value = "";
 }
 
