@@ -4,9 +4,19 @@ var ul = document.querySelector("ul");
 // var li = document.querySelectorAll("li");
 
 //deal with pre-existing item add ToggleDone and delete button to them
+
+//HTMLCollection is an arraylike object but it is not an array
+//=> no forEach method
+
 for(let item of ul.children){
 	toggleDone(item);
 }
+
+// for(let i = 0; i < ul.children.length; i++){
+// 	toggleDone(ul.children[i]);
+// }
+
+ul.children
 
 //why does not work in for loop but work outside?
 //HTML Collections and childNodes?
@@ -42,6 +52,7 @@ function createListElement() {
 	ul.appendChild(li);
 	toggleDone(li);
 	input.value = "";
+	console.log(li);
 }
 
 function addListAfterClick() {
